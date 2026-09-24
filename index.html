@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Wish_Acknowledgement.VR</title>
 
-<!-- ── Meta ─────────────────────────────────────────────────────────────── -->
 <meta name="description" content="Wish_Acknowledgement.VR — an interactive acknowledgement terminal that logs your birthday wish. A VR Developments mini-project." />
 <meta name="author" content="Volam Rakshith · VR Developments" />
 <meta name="theme-color" content="#05030f" />
@@ -13,11 +12,6 @@
 <meta name="format-detection" content="telephone=no" />
 <meta name="robots" content="index, follow" />
 
-<!-- Open Graph / link preview (what friends see when the link is pasted in a chat)
-     The image path is relative — most modern clients resolve it against the page
-     URL. If your preview ever fails to render, replace it with the absolute
-     URL of your Pages site, e.g.
-     <meta property="og:image" content="https://YOUR-PAGES-URL/assets/img/og-cover.png" /> -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="VR Developments" />
 <meta property="og:title" content="Wish_Acknowledgement.VR" />
@@ -27,20 +21,18 @@
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="Wish_Acknowledgement.VR terminal with an ACKNOWLEDGE WISH button, branded VR Developments." />
+
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Wish_Acknowledgement.VR" />
 <meta name="twitter:description" content="Incoming birthday wish detected. Acknowledge it inside the terminal." />
 <meta name="twitter:image" content="assets/img/og-cover.png" />
 
-<!-- Installable web app (friends can add it to their home screen) -->
 <link rel="manifest" href="site.webmanifest" />
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
 <meta name="apple-mobile-web-app-title" content="Wish_Ack.VR" />
 
-<!-- Inline SVG favicon: no external asset, no 404s -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23060517'/%3E%3Cpath d='M32 9 53 21v22L32 55 11 43V21z' fill='none' stroke='%2327e6ff' stroke-width='3'/%3E%3Ctext x='32' y='41' font-family='monospace' font-size='21' font-weight='700' fill='%23ff2fd0' text-anchor='middle'%3EVR%3C/text%3E%3C/svg%3E" />
 
-<!-- Premium typography (optional: page degrades gracefully to system fonts) -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" />
@@ -50,9 +42,6 @@
 
 <body>
 
-<!-- ══════════════════════════════════════════════════════════════════════
-     AMBIENT BACKGROUND LAYERS  (cheap CSS layers + 2 canvases)
-     ══════════════════════════════════════════════════════════════════════ -->
 <div class="bg bg--grid" aria-hidden="true"></div>
 <div class="bg bg--aurora" aria-hidden="true"></div>
 <div class="bg bg--spot" id="bg-spot" aria-hidden="true"></div>
@@ -63,9 +52,6 @@
 <canvas id="fx-front" class="bg bg--canvas bg--canvas-front" aria-hidden="true"></canvas>
 <div class="flash" id="flash" aria-hidden="true"></div>
 
-<!-- ══════════════════════════════════════════════════════════════════════
-     SVG SPRITE — VR Developments mark (no external assets required)
-     ══════════════════════════════════════════════════════════════════════ -->
 <svg class="sprite" aria-hidden="true" focusable="false" width="0" height="0">
   <defs>
     <linearGradient id="vrGrad" x1="0" y1="0" x2="1" y2="1">
@@ -73,6 +59,7 @@
       <stop offset="50%" stop-color="#7c5cff" />
       <stop offset="100%" stop-color="#ff2fd0" />
     </linearGradient>
+
     <linearGradient id="vrGradSoft" x1="0" y1="1" x2="1" y2="0">
       <stop offset="0%" stop-color="#27e6ff" stop-opacity=".25" />
       <stop offset="100%" stop-color="#ff2fd0" stop-opacity=".25" />
@@ -83,19 +70,37 @@
         <circle cx="80" cy="80" r="70" fill="none" stroke="url(#vrGrad)" stroke-width="1.4"
                 stroke-dasharray="9 15" opacity=".75" />
       </g>
+
       <g class="vr-mark__ring-inner">
         <circle cx="80" cy="80" r="58" fill="none" stroke="#27e6ff" stroke-width="1"
                 stroke-dasharray="2 9" opacity=".45" />
       </g>
+
       <circle cx="80" cy="80" r="48" fill="url(#vrGradSoft)" opacity=".55" />
-      <path class="vr-mark__hex" d="M80 20 L132 50 V110 L80 140 L28 110 V50 Z"
-            fill="none" stroke="url(#vrGrad)" stroke-width="2.6"
+
+      <path class="vr-mark__hex"
+            d="M80 20 L132 50 V110 L80 140 L28 110 V50 Z"
+            fill="none"
+            stroke="url(#vrGrad)"
+            stroke-width="2.6"
             stroke-linejoin="round" />
-      <path class="vr-mark__hex-glint" d="M28 50 L80 80 L132 50" fill="none"
-            stroke="url(#vrGrad)" stroke-width="1.2" opacity=".5" />
-      <path class="vr-mark__hex-glint" d="M80 80 V140" fill="none"
-            stroke="url(#vrGrad)" stroke-width="1.2" opacity=".5" />
+
+      <path class="vr-mark__hex-glint"
+            d="M28 50 L80 80 L132 50"
+            fill="none"
+            stroke="url(#vrGrad)"
+            stroke-width="1.2"
+            opacity=".5" />
+
+      <path class="vr-mark__hex-glint"
+            d="M80 80 V140"
+            fill="none"
+            stroke="url(#vrGrad)"
+            stroke-width="1.2"
+            opacity=".5" />
+
       <text class="vr-mark__mono" x="80" y="93" text-anchor="middle">VR</text>
+
       <g class="vr-mark__orbit">
         <circle cx="80" cy="10" r="3.4" fill="#27e6ff" />
       </g>
@@ -103,34 +108,56 @@
 
     <symbol id="ic-sound-on" viewBox="0 0 24 24">
       <path d="M4 9h3l4-3.5v13L7 15H4z" fill="currentColor" opacity=".9" />
-      <path d="M15 8.5c1.2 1 1.2 6 0 7M17.6 6c2.4 2.2 2.4 9.8 0 12" fill="none"
-            stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+      <path d="M15 8.5c1.2 1 1.2 6 0 7M17.6 6c2.4 2.2 2.4 9.8 0 12"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round" />
     </symbol>
+
     <symbol id="ic-sound-off" viewBox="0 0 24 24">
       <path d="M4 9h3l4-3.5v13L7 15H4z" fill="currentColor" opacity=".9" />
-      <path d="M15 9.5l4 5m0-5l-4 5" fill="none" stroke="currentColor"
-            stroke-width="1.6" stroke-linecap="round" />
+      <path d="M15 9.5l4 5m0-5l-4 5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round" />
     </symbol>
   </defs>
 </svg>
 
-<!-- ══════════════════════════════════════════════════════════════════════
-     APP SHELL
-     ══════════════════════════════════════════════════════════════════════ -->
 <div class="shell" id="shell">
 
-  <!-- ── TOP HUD ─────────────────────────────────────────────────────── -->
   <header class="hud hud--top">
     <div class="hud__group">
       <span class="hud__mark" aria-hidden="true">
-        <!-- Inline (not <use>) so the CSS keyframes can drive the rings -->
         <svg viewBox="0 0 160 160" focusable="false">
-          <g class="vr-mark__ring-outer"><circle cx="80" cy="80" r="70" fill="none" stroke="url(#vrGrad)" stroke-width="2" stroke-dasharray="9 15" opacity=".8"/></g>
-          <circle cx="80" cy="80" r="48" fill="url(#vrGradSoft)" opacity=".5"/>
-          <path class="vr-mark__hex" d="M80 20 L132 50 V110 L80 140 L28 110 V50 Z" fill="none" stroke="url(#vrGrad)" stroke-width="3.4" stroke-linejoin="round"/>
-          <text class="vr-mark__mono" x="80" y="93" text-anchor="middle">VR</text>
+          <g class="vr-mark__ring-outer">
+            <circle cx="80" cy="80" r="70" fill="none"
+                    stroke="url(#vrGrad)"
+                    stroke-width="2"
+                    stroke-dasharray="9 15"
+                    opacity=".8"/>
+          </g>
+
+          <circle cx="80" cy="80" r="48"
+                  fill="url(#vrGradSoft)"
+                  opacity=".5"/>
+
+          <path class="vr-mark__hex"
+                d="M80 20 L132 50 V110 L80 140 L28 110 V50 Z"
+                fill="none"
+                stroke="url(#vrGrad)"
+                stroke-width="3.4"
+                stroke-linejoin="round"/>
+
+          <text class="vr-mark__mono"
+                x="80"
+                y="93"
+                text-anchor="middle">VR</text>
         </svg>
       </span>
+
       <span class="hud__brand">
         <span class="hud__brand-full">VR&nbsp;<b>DEVELOPMENTS</b></span>
         <span class="hud__brand-short">VR&nbsp;<b>DEV</b></span>
@@ -143,286 +170,681 @@
     </div>
 
     <div class="hud__group hud__group--end">
-      <span class="hud__live" title="System online"><i class="hud__dot"></i><span class="hud__live-txt">ONLINE</span></span>
-      <span class="hud__clock" id="hud-clock" title="Your local time">--:--:--</span>
-      <button type="button" class="icon-btn" id="btn-sound" aria-pressed="false"
-              title="Sound is off by default" aria-label="Toggle sound effects">
-        <svg class="icon-btn__ic icon-btn__ic--off" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-sound-off" /></svg>
-        <svg class="icon-btn__ic icon-btn__ic--on" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-sound-on" /></svg>
+      <span class="hud__live">
+        <i class="hud__dot"></i>
+        <span class="hud__live-txt">ONLINE</span>
+      </span>
+
+      <span class="hud__clock"
+            id="hud-clock"
+            title="Your local time">--:--:--</span>
+
+      <button type="button"
+              class="icon-btn"
+              id="btn-sound"
+              aria-pressed="false"
+              title="Sound is off by default"
+              aria-label="Toggle sound effects">
+
+        <svg class="icon-btn__ic icon-btn__ic--off"
+             viewBox="0 0 24 24"
+             aria-hidden="true">
+          <use href="#ic-sound-off" />
+        </svg>
+
+        <svg class="icon-btn__ic icon-btn__ic--on"
+             viewBox="0 0 24 24"
+             aria-hidden="true">
+          <use href="#ic-sound-on" />
+        </svg>
       </button>
-      <button type="button" class="ghost-btn" id="btn-skip" hidden>SKIP INTRO</button>
+
+      <button type="button"
+              class="ghost-btn"
+              id="btn-skip"
+              hidden>
+        SKIP INTRO
+      </button>
     </div>
   </header>
 
-  <!-- ── STAGE (all scenes live here, absolutely stacked) ────────────── -->
   <main class="stage" id="stage">
 
-    <!-- ── SCENE 1 : SYSTEM INITIALIZATION ──────────────────────────── -->
-    <section class="scene scene--boot is-active" id="scene-boot" data-scene="boot" aria-label="System initialization">
+    <!-- SCENE 1 : SYSTEM INITIALIZATION -->
+    <section class="scene scene--boot is-active"
+             id="scene-boot"
+             data-scene="boot"
+             aria-label="System initialization">
 
-     <div class="boot__stack">
-      <!-- 1a. boot log -->
-      <div class="boot" id="boot-view-log">
-        <div class="boot__bar">
-          <span class="boot__bar-dot"></span>
-          <span class="boot__bar-title">VR-DEV / ACKNOWLEDGEMENT MODULE</span>
-          <span class="boot__bar-state" id="boot-state">COLD START</span>
+      <div class="boot__stack">
+
+        <div class="boot" id="boot-view-log">
+
+          <div class="boot__bar">
+            <span class="boot__bar-dot"></span>
+            <span class="boot__bar-title">
+              VR-DEV / ACKNOWLEDGEMENT MODULE
+            </span>
+            <span class="boot__bar-state"
+                  id="boot-state">
+              COLD START
+            </span>
+          </div>
+
+          <h1 class="boot__title glitch"
+              data-text="Wish_Acknowledgement.VR">
+            Wish_Acknowledgement.VR
+          </h1>
+
+          <p class="boot__sub">
+            Birthday Response Terminal · Interactive Build · No Backend Required
+          </p>
+
+          <ul class="log"
+              id="boot-log"
+              aria-live="off"></ul>
+
+          <div class="progress">
+            <div class="progress__track">
+              <span class="progress__fill"
+                    id="boot-bar"></span>
+            </div>
+
+            <span class="progress__pct"
+                  id="boot-pct">
+              0%
+            </span>
+          </div>
         </div>
 
-        <h1 class="boot__title glitch" data-text="Wish_Acknowledgement.VR">Wish_Acknowledgement.VR</h1>
-        <p class="boot__sub">Birthday Response Terminal · Interactive Build · No Backend Required</p>
+        <div class="reveal"
+             id="boot-view-name"
+             aria-hidden="true">
 
-        <ul class="log" id="boot-log" aria-live="off"></ul>
+          <span class="reveal__eyebrow">
+            <i></i>SENDER IDENTIFIED
+          </span>
 
-        <div class="progress">
-          <div class="progress__track"><span class="progress__fill" id="boot-bar"></span></div>
-          <span class="progress__pct" id="boot-pct">0%</span>
+          <div class="reveal__name-wrap">
+            <h2 class="reveal__name glitch"
+                id="reveal-name"
+                data-text="">—</h2>
+
+            <span class="reveal__sweep"
+                  aria-hidden="true"></span>
+          </div>
+
+          <p class="reveal__line"
+             id="reveal-line">
+            Access granted. Preparing acknowledgement interface…
+          </p>
+
+          <div class="reveal__chips">
+            <span class="chip">MATCH: 100%</span>
+            <span class="chip">ENCRYPTION: OFF (BIRTHDAY)</span>
+          </div>
         </div>
+
       </div>
 
-      <!-- 1b. identity reveal (cross-fades over the log) -->
-      <div class="reveal" id="boot-view-name" aria-hidden="true">
-        <span class="reveal__eyebrow"><i></i>SENDER IDENTIFIED</span>
-        <div class="reveal__name-wrap">
-          <h2 class="reveal__name glitch" id="reveal-name" data-text="">—</h2>
-          <span class="reveal__sweep" aria-hidden="true"></span>
-        </div>
-        <p class="reveal__line" id="reveal-line">Access granted. Preparing acknowledgement interface…</p>
-        <div class="reveal__chips">
-          <span class="chip">MATCH: 100%</span>
-          <span class="chip">ENCRYPTION: OFF (BIRTHDAY)</span>
-        </div>
-      </div>
-     </div>
-
-      <p class="boot__hint" id="boot-hint">Tap anywhere<span class="kbd-hint"> · or press <kbd>SPACE</kbd></span> to skip</p>
+      <p class="boot__hint"
+         id="boot-hint">
+        Tap anywhere
+        <span class="kbd-hint">
+          · or press <kbd>SPACE</kbd>
+        </span>
+        to skip
+      </p>
     </section>
 
-    <!-- ── SCENE 2 : WISH DETECTED ──────────────────────────────────── -->
-    <section class="scene scene--detect" id="scene-detect" data-scene="detect" aria-label="Incoming birthday wish detected">
-      <div class="panel panel--wish" id="wish-panel">
-        <div class="panel__corner panel__corner--tl" aria-hidden="true"></div>
-        <div class="panel__corner panel__corner--tr" aria-hidden="true"></div>
-        <div class="panel__corner panel__corner--bl" aria-hidden="true"></div>
-        <div class="panel__corner panel__corner--br" aria-hidden="true"></div>
 
-        <span class="pill pill--live"><i></i>INCOMING TRANSMISSION</span>
+    <!-- SCENE 2 : WISH DETECTED -->
+    <section class="scene scene--detect"
+             id="scene-detect"
+             data-scene="detect"
+             aria-label="Incoming birthday wish detected">
 
-        <h2 class="wish__title">BIRTHDAY WISH DETECTED</h2>
+      <div class="panel panel--wish"
+           id="wish-panel">
+
+        <div class="panel__corner panel__corner--tl"
+             aria-hidden="true"></div>
+
+        <div class="panel__corner panel__corner--tr"
+             aria-hidden="true"></div>
+
+        <div class="panel__corner panel__corner--bl"
+             aria-hidden="true"></div>
+
+        <div class="panel__corner panel__corner--br"
+             aria-hidden="true"></div>
+
+        <span class="pill pill--live">
+          <i></i>INCOMING TRANSMISSION
+        </span>
+
+        <h2 class="wish__title">
+          BIRTHDAY WISH DETECTED
+        </h2>
 
         <div class="sender">
           <span class="sender__label">SENDER</span>
-          <span class="sender__name glitch" data-name-slot data-text="">—</span>
+
+          <span class="sender__name glitch"
+                data-name-slot
+                data-text="">—</span>
         </div>
 
-        <ul class="readout" id="wish-readout"></ul>
+        <ul class="readout"
+            id="wish-readout"></ul>
 
-        <button type="button" class="cta" id="btn-acknowledge">
-          <span class="cta__ring" aria-hidden="true"></span>
-          <span class="cta__halo" aria-hidden="true"></span>
+        <button type="button"
+                class="cta"
+                id="btn-acknowledge">
+
+          <span class="cta__ring"
+                aria-hidden="true"></span>
+
+          <span class="cta__halo"
+                aria-hidden="true"></span>
+
           <span class="cta__inner">
-            <span class="cta__label" data-label="ACKNOWLEDGE WISH">ACKNOWLEDGE WISH</span>
-            <span class="cta__sub">Tap to process<span class="kbd-hint"> · or press <kbd>SPACE</kbd></span></span>
+
+            <span class="cta__label"
+                  data-label="ACKNOWLEDGE WISH">
+              ACKNOWLEDGE WISH
+            </span>
+
+            <span class="cta__sub">
+              Tap to process
+              <span class="kbd-hint">
+                · or press <kbd>SPACE</kbd>
+              </span>
+            </span>
+
           </span>
         </button>
 
         <p class="panel__foot">
-          Everything runs locally in your browser. Nothing is stored, tracked, or uploaded — except the wish. That is archived forever.
+          Everything runs locally in your browser.
+          Nothing is stored, tracked, or uploaded — except the wish.
+          That is archived forever.
         </p>
       </div>
     </section>
-<!-- ══════════════════════════════════════════════════════════════════════
-     FRIENDSHIP TEST
-     ══════════════════════════════════════════════════════════════════════ -->
-<section class="scene scene--friendship" id="scene-friendship" data-scene="friendship" aria-label="Friendship test">
 
-  <div class="panel panel--friendship" id="friendship-panel">
-    <div class="panel__corner panel__corner--tl" aria-hidden="true"></div>
-    <div class="panel__corner panel__corner--tr" aria-hidden="true"></div>
-    <div class="panel__corner panel__corner--bl" aria-hidden="true"></div>
-    <div class="panel__corner panel__corner--br" aria-hidden="true"></div>
 
-    <span class="pill pill--live"><i></i>RELATIONSHIP ANALYSIS</span>
+    <!-- SCENE 3 : FRIENDSHIP TEST -->
+    <section class="scene scene--friendship"
+             id="scene-friendship"
+             data-scene="friendship"
+             aria-label="Friendship test">
 
-    <h2 class="friendship__title">SCANNING RELATIONSHIP DATA...</h2>
+      <div class="panel panel--friendship"
+           id="friendship-panel">
 
-    <div class="friendship__stats">
-      <div class="friendship__stat">
-        <div class="friendship__stat-head">
-          <span>Friendship Level</span>
-          <b>100%</b>
+        <div class="panel__corner panel__corner--tl"
+             aria-hidden="true"></div>
+
+        <div class="panel__corner panel__corner--tr"
+             aria-hidden="true"></div>
+
+        <div class="panel__corner panel__corner--bl"
+             aria-hidden="true"></div>
+
+        <div class="panel__corner panel__corner--br"
+             aria-hidden="true"></div>
+
+        <span class="pill pill--live friendship__pill">
+          <i></i>RELATIONSHIP ANALYSIS
+        </span>
+
+        <h2 class="friendship__title">
+          SCANNING RELATIONSHIP DATA...
+        </h2>
+
+        <div class="friendship__scanline"
+             aria-hidden="true"></div>
+
+        <div class="friendship__stats">
+
+          <div class="friendship__stat"
+               data-score="100">
+
+            <div class="friendship__stat-head">
+              <span>Friendship Level</span>
+              <strong class="friendship__value">0%</strong>
+            </div>
+
+            <div class="friendship__bar">
+              <span class="friendship__fill"></span>
+            </div>
+          </div>
+
+
+          <div class="friendship__stat"
+               data-score="92">
+
+            <div class="friendship__stat-head">
+              <span>Chaos Compatibility</span>
+              <strong class="friendship__value">0%</strong>
+            </div>
+
+            <div class="friendship__bar">
+              <span class="friendship__fill"></span>
+            </div>
+          </div>
+
+
+          <div class="friendship__stat"
+               data-score="100">
+
+            <div class="friendship__stat-head">
+              <span>Trust Level</span>
+              <strong class="friendship__value">0%</strong>
+            </div>
+
+            <div class="friendship__bar">
+              <span class="friendship__fill"></span>
+            </div>
+          </div>
+
+
+          <div class="friendship__stat"
+               data-score="100">
+
+            <div class="friendship__stat-head">
+              <span>Birthday Support</span>
+              <strong class="friendship__value">0%</strong>
+            </div>
+
+            <div class="friendship__bar">
+              <span class="friendship__fill"></span>
+            </div>
+          </div>
+
         </div>
-        <div class="friendship__bar">
-          <span style="--friendship-fill: 100%"></span>
+
+        <div class="friendship__strength">
+          <span>Friendship Strength</span>
+
+          <strong id="friendship-strength">
+            NOT TESTED YET
+          </strong>
+        </div>
+
+        <div class="friendship__status"
+             id="friendship-status">
+          SYSTEM READY · WAITING FOR TEST
+        </div>
+
+        <div class="actions friendship__actions">
+
+          <button type="button"
+                  class="btn btn--primary"
+                  id="btn-test-friendship">
+
+            <span class="btn__label">
+              TEST FRIENDSHIP
+            </span>
+
+            <span class="btn__arrow"
+                  aria-hidden="true">
+              ▸
+            </span>
+          </button>
+
         </div>
       </div>
+    </section>
 
-      <div class="friendship__stat">
-        <div class="friendship__stat-head">
-          <span>Chaos Compatibility</span>
-          <b>92%</b>
+
+    <!-- SCENE 4 : FRIENDSHIP REVEAL -->
+    <section class="scene scene--friendship-reveal"
+             id="scene-friendship-reveal"
+             data-scene="friendship-reveal"
+             aria-label="Friendship test result">
+
+      <div class="panel panel--friendship-reveal"
+           id="friendship-reveal">
+
+        <div class="friendship-reveal__scan"
+             aria-hidden="true"></div>
+
+        <div class="friendship-reveal__terminal">
+          <span>RELATIONSHIP TEST</span>
+          <span>RESULT: CLASSIFIED</span>
         </div>
-        <div class="friendship__bar">
-          <span style="--friendship-fill: 92%"></span>
+
+        <h2 class="friendship-reveal__title">
+          NO TEST NEEDED.
+        </h2>
+
+        <p class="friendship-reveal__joke">
+          JUST KIDDING 😁
+        </p>
+
+        <p class="friendship-reveal__final">
+          WE'RE BEST FRIENDS. 🫂
+        </p>
+
+        <div class="friendship-reveal__pulse"
+             aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div class="actions friendship-reveal__actions">
+
+          <button type="button"
+                  class="btn btn--primary"
+                  id="btn-friendship-continue">
+
+            <span class="btn__label">
+              CONTINUE
+            </span>
+
+            <span class="btn__arrow"
+                  aria-hidden="true">
+              ▸
+            </span>
+          </button>
+
         </div>
       </div>
+    </section>
 
-      <div class="friendship__stat">
-        <div class="friendship__stat-head">
-          <span>Trust Level</span>
-          <b>100%</b>
-        </div>
-        <div class="friendship__bar">
-          <span style="--friendship-fill: 100%"></span>
-        </div>
-      </div>
 
-      <div class="friendship__stat">
-        <div class="friendship__stat-head">
-          <span>Birthday Support</span>
-          <b>100%</b>
-        </div>
-        <div class="friendship__bar">
-          <span style="--friendship-fill: 100%"></span>
-        </div>
-      </div>
-    </div>
+    <!-- SCENE 5 : ACKNOWLEDGED / RECEIPT -->
+    <section class="scene scene--result"
+             id="scene-result"
+             data-scene="result"
+             aria-label="Wish acknowledged">
 
-    <div class="friendship__strength">
-      <span>Friendship Strength</span>
-      <strong>NOT TESTED YET</strong>
-    </div>
-
-    <div class="friendship__result-label">RESULT:</div>
-
-    <div class="friendship__reveal" id="friendship-reveal" hidden aria-live="polite">
-      <span>NO TEST NEEDED.</span>
-      <span>JUST KIDDING 😁</span>
-      <strong>WE'RE BEST FRIENDS. 🫂</strong>
-    </div>
-
-    <button type="button" class="cta friendship__cta" id="btn-test-friendship">
-      <span class="cta__ring" aria-hidden="true"></span>
-      <span class="cta__halo" aria-hidden="true"></span>
-      <span class="cta__inner">
-        <span class="cta__label">TEST FRIENDSHIP</span>
-        <span class="cta__sub">Begin relationship analysis</span>
-      </span>
-    </button>
-
-    <button type="button" class="btn btn--primary friendship__continue" id="btn-friendship-continue" hidden>
-      <span class="btn__label">CONTINUE</span>
-      <span class="btn__arrow" aria-hidden="true">▸</span>
-    </button>
-
-  </div>
-</section>
-    <!-- ── SCENE 3 : ACKNOWLEDGED ───────────────────────────────────── -->
-    <section class="scene scene--result" id="scene-result" data-scene="result" aria-label="Wish acknowledged">
       <div class="panel panel--result">
-        <div class="stamp" id="result-stamp" aria-hidden="true">
-          <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" /><path d="M36 62l16 16 32-34" /></svg>
+
+        <div class="stamp"
+             id="result-stamp"
+             aria-hidden="true">
+
+          <svg viewBox="0 0 120 120">
+            <circle cx="60"
+                    cy="60"
+                    r="52" />
+
+            <path d="M36 62l16 16 32-34" />
+          </svg>
         </div>
 
-        <h2 class="result__title glitch" id="result-title" data-text="WISH ACKNOWLEDGED">WISH ACKNOWLEDGED</h2>
+        <h2 class="result__title glitch"
+            id="result-title"
+            data-text="WISH ACKNOWLEDGED">
+          WISH ACKNOWLEDGED
+        </h2>
 
         <p class="result__line">
-          <b data-name-slot>—</b>, your birthday wish has been successfully received.
+          <b data-name-slot>—</b>,
+          your birthday wish has been successfully received.
         </p>
 
         <div class="terminal">
+
           <div class="terminal__bar">
             <span class="terminal__bar-dot"></span>
-            <span class="terminal__bar-label">RECEIPT · WISH_LOG.TXT</span>
-            <span class="terminal__bar-id" id="receipt-id">VR-0000-0000</span>
+
+            <span class="terminal__bar-label">
+              RECEIPT · WISH_LOG.TXT
+            </span>
+
+            <span class="terminal__bar-id"
+                  id="receipt-id">
+              VR-0000-0000
+            </span>
           </div>
-          <ul class="status" id="status-list"></ul>
+
+          <ul class="status"
+              id="status-list"></ul>
         </div>
 
         <div class="actions">
-          <button type="button" class="btn btn--primary" id="btn-continue">
-            <span class="btn__label">CONTINUE</span><span class="btn__arrow" aria-hidden="true">▸</span>
+
+          <button type="button"
+                  class="btn btn--primary"
+                  id="btn-continue">
+
+            <span class="btn__label">
+              CONTINUE
+            </span>
+
+            <span class="btn__arrow"
+                  aria-hidden="true">
+              ▸
+            </span>
           </button>
-          <button type="button" class="btn btn--ghost" id="btn-replay-a">REPLAY</button>
+
+          <button type="button"
+                  class="btn btn--ghost"
+                  id="btn-replay-a">
+            REPLAY
+          </button>
+
         </div>
       </div>
     </section>
 
-    <!-- ── SCENE 4 : FINAL / SIGN-OFF ───────────────────────────────── -->
-    <section class="scene scene--final" id="scene-final" data-scene="final" aria-label="Acknowledgement complete">
+
+    <!-- SCENE 6 : FINAL / SIGN-OFF -->
+    <section class="scene scene--final"
+             id="scene-final"
+             data-scene="final"
+             aria-label="Acknowledgement complete">
+
       <div class="final">
-        <span class="final__eyebrow">TRANSMISSION COMPLETE</span>
-        <h2 class="final__title">Wish Acknowledgement Complete.</h2>
+
+        <span class="final__eyebrow">
+          TRANSMISSION COMPLETE
+        </span>
+
+        <h2 class="final__title">
+          Wish Acknowledgement Complete.
+        </h2>
 
         <div class="card">
+
           <div class="signature">
-            <span class="signature__label">SIGNED BY</span>
-            <span class="signature__name glitch" data-text="Volam Rakshith">Volam Rakshith</span>
-            <span class="signature__role">ROLE: DEVELOPER / B-DAY BOY · OPERATING SINCE 30 SEPTEMBER</span>
+
+            <span class="signature__label">
+              SIGNED BY
+            </span>
+
+            <span class="signature__name glitch"
+                  data-text="Volam Rakshith">
+              Volam Rakshith
+            </span>
+
+            <span class="signature__role">
+              ROLE: DEVELOPER / B-DAY BOY · OPERATING SINCE 30 SEPTEMBER
+            </span>
+
           </div>
 
-          <div class="divider" aria-hidden="true"></div>
+          <div class="divider"
+               aria-hidden="true"></div>
 
           <div class="vrbrand">
-            <span class="vrbrand__mark" role="img" aria-label="VR Developments logo">
-              <svg viewBox="0 0 160 160" focusable="false">
+
+            <span class="vrbrand__mark"
+                  role="img"
+                  aria-label="VR Developments logo">
+
+              <svg viewBox="0 0 160 160"
+                   focusable="false">
+
                 <g class="vr-mark__ring-outer">
-                  <circle cx="80" cy="80" r="70" fill="none" stroke="url(#vrGrad)" stroke-width="1.6" stroke-dasharray="9 15" opacity=".8"/>
+                  <circle cx="80"
+                          cy="80"
+                          r="70"
+                          fill="none"
+                          stroke="url(#vrGrad)"
+                          stroke-width="1.6"
+                          stroke-dasharray="9 15"
+                          opacity=".8"/>
                 </g>
+
                 <g class="vr-mark__ring-inner">
-                  <circle cx="80" cy="80" r="58" fill="none" stroke="#27e6ff" stroke-width="1.1" stroke-dasharray="2 9" opacity=".5"/>
+                  <circle cx="80"
+                          cy="80"
+                          r="58"
+                          fill="none"
+                          stroke="#27e6ff"
+                          stroke-width="1.1"
+                          stroke-dasharray="2 9"
+                          opacity=".5"/>
                 </g>
-                <circle class="vr-mark__core-pulse" cx="80" cy="80" r="48" fill="url(#vrGradSoft)" opacity=".55"/>
-                <path class="vr-mark__hex" d="M80 20 L132 50 V110 L80 140 L28 110 V50 Z" fill="none" stroke="url(#vrGrad)" stroke-width="2.6" stroke-linejoin="round"/>
-                <path class="vr-mark__hex-glint" d="M28 50 L80 80 L132 50" fill="none" stroke="url(#vrGrad)" stroke-width="1.2" opacity=".5"/>
-                <path class="vr-mark__hex-glint" d="M80 80 V140" fill="none" stroke="url(#vrGrad)" stroke-width="1.2" opacity=".5"/>
-                <text class="vr-mark__mono" x="80" y="93" text-anchor="middle">VR</text>
-                <g class="vr-mark__orbit"><circle cx="80" cy="10" r="3.4" fill="#27e6ff"/></g>
+
+                <circle class="vr-mark__core-pulse"
+                        cx="80"
+                        cy="80"
+                        r="48"
+                        fill="url(#vrGradSoft)"
+                        opacity=".55"/>
+
+                <path class="vr-mark__hex"
+                      d="M80 20 L132 50 V110 L80 140 L28 110 V50 Z"
+                      fill="none"
+                      stroke="url(#vrGrad)"
+                      stroke-width="2.6"
+                      stroke-linejoin="round"/>
+
+                <path class="vr-mark__hex-glint"
+                      d="M28 50 L80 80 L132 50"
+                      fill="none"
+                      stroke="url(#vrGrad)"
+                      stroke-width="1.2"
+                      opacity=".5"/>
+
+                <path class="vr-mark__hex-glint"
+                      d="M80 80 V140"
+                      fill="none"
+                      stroke="url(#vrGrad)"
+                      stroke-width="1.2"
+                      opacity=".5"/>
+
+                <text class="vr-mark__mono"
+                      x="80"
+                      y="93"
+                      text-anchor="middle">
+                  VR
+                </text>
+
+                <g class="vr-mark__orbit">
+                  <circle cx="80"
+                          cy="10"
+                          r="3.4"
+                          fill="#27e6ff"/>
+                </g>
+
               </svg>
             </span>
+
             <div class="vrbrand__text">
-              <span class="vrbrand__name"><b>VR</b> DEVELOPMENTS</span>
-              <span class="vrbrand__tag">MINI-PROJECTS · INTERACTIVE WEB · THINGS THAT GLOW</span>
+              <span class="vrbrand__name">
+                <b>VR</b> DEVELOPMENTS
+              </span>
+
+              <span class="vrbrand__tag">
+                MINI-PROJECTS · INTERACTIVE WEB · THINGS THAT GLOW
+              </span>
             </div>
           </div>
         </div>
 
         <div class="actions">
-          <button type="button" class="btn btn--primary" id="btn-copy">
-            <span class="btn__label">COPY RECEIPT</span>
+
+          <button type="button"
+                  class="btn btn--primary"
+                  id="btn-copy">
+
+            <span class="btn__label">
+              COPY RECEIPT
+            </span>
           </button>
-          <button type="button" class="btn btn--ghost" id="btn-replay-b">REPLAY EXPERIENCE</button>
+
+          <button type="button"
+                  class="btn btn--ghost"
+                  id="btn-replay-b">
+            REPLAY EXPERIENCE
+          </button>
+
         </div>
 
         <p class="final__foot">
-          Wish_Acknowledgement.VR · a <b>VR Developments</b> mini-project · static build, hosted free
-          <span class="final__sep" aria-hidden="true">·</span>
-          <span class="hud__inline" id="final-clock">--:--</span>
+          Wish_Acknowledgement.VR · a
+          <b>VR Developments</b> mini-project · static build, hosted free
+
+          <span class="final__sep"
+                aria-hidden="true">
+            ·
+          </span>
+
+          <span class="hud__inline"
+                id="final-clock">
+            --:--
+          </span>
         </p>
+
       </div>
     </section>
+
   </main>
 
-  <!-- ── BOTTOM HUD ──────────────────────────────────────────────────── -->
   <footer class="hud hud--bottom">
-    <span class="hud__meta">©&nbsp;<span id="hud-year">2026</span>&nbsp;<span class="hud__word">VR DEVELOPMENTS</span></span>
-    <span class="hud__meta hud__meta--mid">EVENT: <b>30 SEPTEMBER</b> · <span id="hud-countdown">—</span></span>
-    <span class="hud__meta hud__meta--end">STATIC BUILD · ZERO TRACKING · NO COOKIES</span>
+
+    <span class="hud__meta">
+      ©&nbsp;
+      <span id="hud-year">2026</span>&nbsp;
+      <span class="hud__word">
+        VR DEVELOPMENTS
+      </span>
+    </span>
+
+    <span class="hud__meta hud__meta--mid">
+      EVENT: <b>30 SEPTEMBER</b> ·
+      <span id="hud-countdown">—</span>
+    </span>
+
+    <span class="hud__meta hud__meta--end">
+      STATIC BUILD · ZERO TRACKING · NO COOKIES
+    </span>
+
   </footer>
 </div>
 
-<!-- Screen-reader announcements -->
-<p class="sr-only" id="sr-status" role="status" aria-live="polite"></p>
+<p class="sr-only"
+   id="sr-status"
+   role="status"
+   aria-live="polite"></p>
 
-<!-- Toast -->
-<div class="toast" id="toast" role="status" aria-live="polite" hidden>
-  <span class="toast__dot"></span><span class="toast__text" id="toast-text"></span>
+<div class="toast"
+     id="toast"
+     role="status"
+     aria-live="polite"
+     hidden>
+
+  <span class="toast__dot"></span>
+  <span class="toast__text"
+        id="toast-text"></span>
 </div>
 
 <noscript>
   <div class="noscript">
     <h2>Wish_Acknowledgement.VR</h2>
-    <p>This terminal needs JavaScript to boot. Your birthday wish is still happily received — consider this the offline acknowledgement. 🎂</p>
+    <p>
+      This terminal needs JavaScript to boot.
+      Your birthday wish is still happily received —
+      consider this the offline acknowledgement. 🎂
+    </p>
   </div>
 </noscript>
 
@@ -430,5 +852,6 @@
 <script src="assets/js/audio.js" defer></script>
 <script src="assets/js/fx.js" defer></script>
 <script src="assets/js/app.js" defer></script>
+
 </body>
 </html>
