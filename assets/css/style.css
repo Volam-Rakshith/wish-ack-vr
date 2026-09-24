@@ -88,7 +88,6 @@ html {
   height: 100%;
   overflow-x: clip;
   -webkit-text-size-adjust: 100%;
-  scrollbar-gutter: stable;
 }
 
 body {
@@ -654,13 +653,13 @@ body.has-pointer .bg--spot { opacity: 1; }
   box-shadow: 0 0 10px var(--c-cyan);
 }
 
-.reveal__name-wrap { position: relative; max-width: 100%; padding: 0 clamp(2px, 1vw, 10px); overflow: hidden; }
+.reveal__name-wrap { position: relative; max-width: 100%; padding: .06em clamp(2px, 1vw, 10px) .14em; overflow: hidden; }
 
 .reveal__name {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: clamp(2.3rem, 11.5vw, 7rem);
-  line-height: .98;
+  line-height: 1.08;
   letter-spacing: -.015em;
   max-width: 100%;
   overflow-wrap: anywhere;
@@ -1431,6 +1430,7 @@ body.has-pointer .bg--spot { opacity: 1; }
   display: inline-flex;
   align-items: center;
   gap: .6em;
+  width: max-content;
   max-width: calc(100vw - 32px);
   padding: .7em 1.1em;
   border-radius: 999px;
