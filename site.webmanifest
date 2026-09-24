@@ -1,0 +1,18 @@
+{
+  "name": "Wish_Acknowledgement.VR",
+  "short_name": "Wish_Ack.VR",
+  "description": "Birthday wish acknowledgement terminal by Volam Rakshith · VR Developments.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#05030f",
+  "theme_color": "#05030f",
+  "lang": "en",
+  "categories": ["entertainment", "lifestyle"],
+  "icons": [
+    { "src": "assets/img/app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/img/app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "assets/img/apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" }
+  ]
+}

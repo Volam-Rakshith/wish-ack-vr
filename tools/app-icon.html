@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>App icon source — Wish_Acknowledgement.VR</title>
+<!--
+  512 × 512 icon source, rendered to assets/img/app-icon-512.png and
+  assets/img/apple-touch-icon.png by tools/build-images.js.
+  Sized so the mark stays inside the maskable safe zone (centre 80%).
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 512px; height: 512px; overflow: hidden; }
+
+  body {
+    position: relative;
+    background: radial-gradient(ellipse 90% 80% at 50% 40%, #12163c 0%, #08061e 55%, #04030f 100%);
+    display: grid;
+    place-items: center;
+  }
+  .grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(78, 130, 255, .13) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(78, 130, 255, .13) 1px, transparent 1px);
+    background-size: 44px 44px;
+    -webkit-mask-image: radial-gradient(circle at 50% 46%, #000 30%, transparent 78%);
+            mask-image: radial-gradient(circle at 50% 46%, #000 30%, transparent 78%);
+  }
+  .halo {
+    position: absolute; width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(39, 230, 255, .34), rgba(124, 92, 255, .2) 45%, transparent 70%);
+    filter: blur(12px);
+  }
+  svg { position: relative; width: 320px; height: 320px; }
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="halo"></div>
+  <svg viewBox="0 0 160 160" aria-hidden="true">
+    <circle cx="80" cy="80" r="70" fill="none" stroke="#27e6ff" stroke-width="2.4"
+            stroke-dasharray="9 15" opacity=".85" />
+    <circle cx="80" cy="80" r="58" fill="none" stroke="#7c5cff" stroke-width="1.6"
+            stroke-dasharray="2 9" opacity=".6" />
+    <circle cx="80" cy="80" r="46" fill="rgba(124, 92, 255, .18)" />
+    <path d="M80 22 L131 51 V109 L80 138 L29 109 V51 Z" fill="none" stroke="#27e6ff"
+          stroke-width="4" stroke-linejoin="round" />
+    <path d="M29 51 L80 80 L131 51" fill="none" stroke="#ff2fd0" stroke-width="1.6" opacity=".65" />
+    <path d="M80 80 V138" fill="none" stroke="#ff2fd0" stroke-width="1.6" opacity=".65" />
+    <text x="80" y="94" text-anchor="middle" font-family="Space Grotesk, sans-serif"
+          font-size="42" font-weight="700" fill="#8ff4ff">VR</text>
+  </svg>
+</body>
+</html>
